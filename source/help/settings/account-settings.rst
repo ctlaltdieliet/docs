@@ -1,14 +1,12 @@
 Account Settings
 ================
 
---------------
-
 Account Settings is accessible from the **Main Menu** by selecting the three horizontal lines (or hamburger menu) at the top of the channel sidebar. From here, you can configure your profile settings, notification preferences, integrations, theme settings, and display options.
 
 General
 -------
 
-Settings to configure name, username, nickname, email and profile picture.
+Settings to configure name, username, nickname, email, and profile picture.
 
 Full Name
 ~~~~~~~~~
@@ -123,10 +121,10 @@ Email Notifications
 
 Email notifications are sent for mentions and direct messages after you’ve been offline for more than 60 seconds or away from Mattermost for more than 5 minutes. Change the email where notifications are sent in **Account Settings > General > Email**.
 
-If your System Administrator has enabled **Email Batching**, you will have additional options under this settings to select how often email notifications will be sent. All notifications received over this time period are combined and sent in a single email.
+If your System Admin has enabled **Email Batching**, you will have additional options under this settings to select how often email notifications will be sent. All notifications received over this time period are combined and sent in a single email.
 
-Send Mobile Push Notifications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Mobile Push Notifications
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Push notifications can be sent to your mobile device if you have the Android or iOS app installed. You can choose the type of activity that will send a notification. By default, push notifications are sent "For mentions and direct messages". If push notifications are sent "Never", the Mattermost setting to trigger push notifications depending on your Mattermost `availability <https://docs.mattermost.com/help/getting-started/setting-your-status-availability.html>`__ is hidden. If your System Admin has not set up push notifications, this setting will be disabled.
 
@@ -149,7 +147,8 @@ In addition to **Words that Trigger Mentions**, this setting allows you to recei
 
 Automatic Direct Message Replies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Set a custom message that will be automatically sent in response to Direct Messages. Mentions in Public and Private Channels will not trigger the automated reply. Enabling Automatic Replies sets your availability to **Out of Office** and disables desktop, email, and push notifications. This setting is experimental and `must be enabled by your System Admin <https://docs.mattermost.com/administration/config-settings.html?highlight=config%20settings#enable-automatic-replies-experimental>`__.
+
+Set an automated custom message that will be sent once per day in response to Direct Messages. Mentions in Public and Private Channels won't trigger the automated reply. Enabling Automatic Replies sets your availability to **Out of Office** and disables desktop, email, and push notifications. This setting is experimental and `must be enabled by your System Admin <https://docs.mattermost.com/administration/config-settings.html?highlight=config%20settings#enable-automatic-replies-experimental>`__.
 
 Display
 -------
@@ -186,13 +185,18 @@ Teammate Name Display
 
 Configure how names are displayed in the user interface: nickname, username or full name. The default for this setting is dependent on the `configuration set by the System Admin <https://docs.mattermost.com/administration/config-settings.html#teammate-name-display>`__.
 
+Show online availability on profile images
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Online availability icons display on user profile avatars in the center channel by default. Disable this setting to hide online availability icons within the center channel.
+
 Timezone
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
 
 Select the timezone used for timestamps in the user interface and email notifications. The setting `must first be enabled by the System Admin <https://docs.mattermost.com/administration/config-settings.html#timezone>`__ by replacing ``false`` with ``true`` in config.json.
 
 Website Link Previews
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 When available, the first web link in a message will show a preview of the website content below the message. This `setting must be enabled by your System Admin <https://docs.mattermost.com/administration/config-settings.html#link-previews>`__.
 
@@ -202,7 +206,6 @@ Default Appearance of Image Previews
 When messages in Mattermost include images, an image preview can display directly below the message for image attachments, image link previews, and `in-line images <https://docs.mattermost.com/help/messaging/formatting-text.html#in-line-images.html>`__ over 100px in height. You can set this preference to **Expanded** or **Collapsed**.
 
 .. tip::
-
   This setting can also be controlled using the slash commands ``/expand`` and ``/collapse``.
 
 Message Display
@@ -210,8 +213,15 @@ Message Display
 
 Select the formatting for messages in the center channel. "Compact" mode decreases the spacing around posts, collapses link previews, and hides thumbnails so only file names are shown. Some formatting types, such as block quotes and headings, are also reduced in size.
 
+Collapsed Reply Threads (Beta)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Collapsed Reply Threads (Beta) offers an enhanced experience for users communicating in threads and replying to messages. Collapsed Reply Threads are available in Mattermost Cloud and from Self-Managed Mattermost v5.37 as an early access beta, and are disabled by default. If your System Admin has enabled **Collapsed Reply Threads** for your workspace, you can enable them in your Mattermost instance to start being notified about threads you're following in a new **Threads** option at the top of the channel sidebar
+
+See our `Organizing Conversations using Collapsed Reply Threads (Beta) <https://docs.mattermost.com/help/messaging/organizing-conversations.html>`__ documentation to learn more about this feature.
+
 Channel Display
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 Select if the text in the center channel is fixed width and centered, or full width.
 
@@ -225,6 +235,7 @@ Select what language Mattermost displays in the user interface. Options include:
 - Español - Spanish
 - Français - French
 - Italiano - Italian
+- Magyar - Hungarian
 - Nederlands - Dutch
 - Polski - Polish
 - Português (Brasil) - Portuguese
@@ -240,7 +251,7 @@ Select what language Mattermost displays in the user interface. Options include:
 - 日本語 - Japanese
 
 Sidebar
---------
+-------
 
 The channel sidebar includes `enhanced sidebar features <https://docs.mattermost.com/help/getting-started/organizing-your-sidebar>`__, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more.
 
@@ -293,7 +304,7 @@ Enable Post Formatting
 This setting controls whether post formatting is rendered. When "On", posts will be rendered with `markdown formatting <https://docs.mattermost.com/help/messaging/formatting-text.html>`__, emoji, autolinked URLs, and line breaks. When "Off", the raw text will be shown.
 
 Enable Join/Leave Messages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This setting controls whether system messages about users joining or leaving a channel are visible. When **On** these messages will appear. When **Off**, these messages will be hidden. If any users are added to or removed from a channel, a system message will still be shown even if this setting is **Off**.
 
@@ -309,8 +320,8 @@ Deactivate Account
 
 Use this setting to deactivate your account. After deactivating, an email notification is sent confirming the deactivation was successful.
 
-Deactivating your account removes your ability to log in to the Mattermost server and disables all email and mobile notifications. To reactivate your account, contact your System Administrator.
+Deactivating your account removes your ability to log in to the Mattermost server and disables all email and mobile notifications. To reactivate your account, contact your System Admin.
 
-Only available for accounts with email login, and if your System Administrator has set ``EnableUserDeactivation`` to ``true`` in ``config.json``.
+Only available for accounts with email login, and if your System Admin has set ``EnableUserDeactivation`` to ``true`` in ``config.json``.
 
-For accounts with other authentication methods such as AD/LDAP or SAML, or for accounts that do not have this setting available, contact your System Administrator to deactivate your account.
+For accounts with other authentication methods such as AD/LDAP or SAML, or for accounts that do not have this setting available, contact your System Admin to deactivate your account.

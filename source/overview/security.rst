@@ -1,4 +1,4 @@
-==================
+
 Security Overview
 ==================
 
@@ -19,9 +19,9 @@ Mattermost offers a host of features to help keep your private cloud communicati
 Private Cloud Deployment with Secure Mobile Apps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   - Mattermost can run entirely behind your firewall as a single Linux binary with MySQL or PostgreSQL.
-   - Mattermost mobile apps can be deployed to an `internal Enterprise App Store <https://docs.mattermost.com/deployment/push.html#enterprise-app-store-eas>`__ by using source code available for Mattermost mobile apps and push notification service. Optionally `VPN clients on PC and mobile devices <https://docs.mattermost.com/deployment/deployment.html#vpn-setup>`__ can be used outside your private network.
-   - Optionally, Mattermost mobile apps can run without a VPN by opening standard ports on your Mattermost server, such as 80 or 443. In this configuration, you have the option of using compiled `iOS and Android applications in iTunes and Google Play provided by Mattermost, Inc. <https://docs.mattermost.com/deployment/push.html#hosted-push-notifications-service-hpns>`__ (E10, E20), as well as enabling `multi-factor authentication <https://docs.mattermost.com/administration/config-settings.html#enable-multi-factor-authentication-enterprise>`__ (E10, E20).
+   - Mattermost can run entirely behind your firewall as a single Linux binary, as a Docker container, or on your Kubernetes cluster with MySQL or PostgreSQL as database. Remote access can be enabled through the use of `VPN clients on PC and mobile devices <https://docs.mattermost.com/deployment/deployment.html#vpn-setup>`__ so that Mattermost can be used outside your private network.
+   - Mattermost mobile apps can be deployed to an `internal Enterprise App Store <https://docs.mattermost.com/deployment/push.html#enterprise-app-store-eas>`__ by using source code available for Mattermost mobile apps and push notification service. 
+   - Optionally, the provided Mattermost Mobile Apps can be used when the Mattermost server is reachable through the internet on port 443. In this configuration, you have the option of using compiled `iOS and Android applications in iTunes and Google Play provided by Mattermost, Inc. <https://docs.mattermost.com/deployment/push.html#hosted-push-notifications-service-hpns>`__ (Enterprise Edition E10 and Enterprise Edition E20).
    - User sessions across web, PC, and mobile can be `remotely revoked through account settings <https://docs.mattermost.com/help/settings/account-settings.html#view-and-logout-of-active-sessions>`__, or via the System Console by deactivating accounts.
    - Mattermost apps can be packaged into leading Enterprise Mobility Management solutions including AirWatch and Blackberry through `AppDome <https://www.appdome.com/>`__.
 
@@ -29,6 +29,8 @@ Centralized Security and Administration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    - Manage users, teams, access control, and system settings in a web-based `System Console user interface <https://docs.mattermost.com/administration/config-settings.html>`__.
+   - Centralized authentication through AD/LDAP (Enterprise Edition E10 and Enterprise Edition E20) and SAML (Enterprise Edition E20).
+   - Synchronize users and groups through the built-in `AD/LDAP integration <https://docs.mattermost.com/deployment/sso-ldap.html>`_ (Enterprise Edition E20).
 
 Transmission Security
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -56,7 +58,8 @@ Authentication Safeguards
 
    - To protect against brute force attacks, you can set `rate limiting on APIs <https://docs.mattermost.com/administration/config-settings.html#id55>`__, varied by query frequency, memory store size, remote address, and headers.
    - Session length, session cache, and idle timeout can be `configured according to your internal policies <https://docs.mattermost.com/administration/config-settings.html#sessions>`__, automatically forcing a user to re-login after a specified period of time.
-   - Remotely `revoke user sessions <https://docs.mattermost.com/help/settings/account-settings.html#view-and-logout-of-active-sessions>`__ across web, mobile devices, and native desktop apps.
+   - Remotely `revoke user sessions <https://docs.mattermost.com/help/settings/account-settings.html#view-and-logout-of-active-sessions>`__ across web, mobile devices, and native desktop apps. User sessions can also be revoked remotely by a System Admin in **System Console > Users**.
+   - Session fixation, where an attacker can trick the user to authenticate with a known session cookie, does not affect Mattermost users as a new session cookie is set at each login.
    - Remotely reset user passwords via the System Console or via the `command line <https://docs.mattermost.com/administration/command-line-tools.html#platform-user-password>`__.
    - Mattermost supports integrated authentication with `Active Directory and LDAP <https://docs.mattermost.com/deployment/sso-ldap.html>`__ (E10) as well as `SAML 2.0 SSO integration <https://docs.mattermost.com/deployment/sso-saml.html>`__ with providers including `Active Directory Federation Services <https://docs.mattermost.com/deployment/sso-saml-adfs.html>`__,  `Okta <https://docs.mattermost.com/deployment/sso-saml-okta.html>`__, among others (E20).
    - The ability to require `multi-factor authentication <https://docs.mattermost.com/deployment/auth.html>`__ is also available (E10).
@@ -109,7 +112,7 @@ Deploying Mattermost as part of a HIPAA-compliant IT infrastructure requires a d
 
 - Mattermost offers HIPAA-relevant **Technical Safeguards** including:
 
-     - `Integrity Controls <https://docs.mattermost.com/overview/security.html#integrity-audit-controls>`__
+     - `Integrity Controls <https://docs.mattermost.com/overview/security.html#integrity-and-audit-controls>`__
      - `Access Control <https://docs.mattermost.com/overview/security.html#access-control-policy>`__
      - `Transmission Security <https://docs.mattermost.com/overview/security.html#transmission-security>`__
      - `Audit Controls <https://docs.mattermost.com/overview/security.html#integrity-audit-controls>`__

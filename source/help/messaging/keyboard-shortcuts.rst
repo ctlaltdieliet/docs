@@ -1,5 +1,5 @@
 Keyboard Shortcuts
-------------------
+==================
 
 Keyboard shortcuts perform operations in Mattermost to help you navigate through channels and make a more efficient use of your keyboard. See also `slash commands <https://docs.mattermost.com/help/messaging/executing-commands.html>`__ for alternate ways to help carry out actions with a keyboard instead of a mouse.
 
@@ -10,7 +10,7 @@ To display a list of available keyboard shortcuts, type CTRL+/ (CMD+/ on Mac), o
    Though Mattermost keyboard shortcuts support standard languages and keyboard layouts, they may not work if you use keymapping that overwrites default browser shortcuts.
 
 Navigation
-==========
+----------
 
 +----------------------------------------+----------------------------------------+---------------------------------------------------------------------------------+
 | On Windows                             | On Mac                                 | Description                                                                     |
@@ -41,13 +41,16 @@ Navigation
 +----------------------------------------+----------------------------------------+---------------------------------------------------------------------------------+
 | CTRL+.                                 | CMD+.                                  | Open and close the right-hand sidebar                                           |
 +----------------------------------------+----------------------------------------+---------------------------------------------------------------------------------+
+| CTRL+SHIFT+F (Mobile App)              | CMD+SHIFT+F (Mobile App)               | Move focus to the Search field and search the current channel                   |  
+| CTRL+F (Desktop App)                   | CMD+F (Desktop App)                    |                                                                                 |
++----------------------------------------+----------------------------------------+---------------------------------------------------------------------------------+
 
 .. note::
 
   Additional navigation keyboard shortcuts for screen reader users can be found `here <https://docs.mattermost.com/help/getting-started/accessibility.html>`_.
 
 Files
-=====
+-----
 
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------+
 | On Windows                             | On Mac                                 | Description                                                    |
@@ -56,7 +59,7 @@ Files
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------+
 
 Messages
-========
+--------
 
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------------------+
 | On Windows                             | On Mac                                 | Description                                                                |
@@ -79,7 +82,7 @@ Messages
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------------------+
 
 Formatting
-==========
+----------
 
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------+
 | On Windows                             | On Mac                                 | Description                                                    |
@@ -92,7 +95,7 @@ Formatting
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------+
 
 Browser Built-in
-================
+----------------
 
 +----------------------------------------+----------------------------------------+----------------------------------------------------------------+
 | On Windows                             | On Mac                                 | Description                                                    |

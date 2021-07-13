@@ -2,12 +2,174 @@
 
 This changelog summarizes updates to [Mattermost Cloud](https://mattermost.com/get-started/), an enterprise-grade SaaS offering hosted by Mattermost.
 
+Latest Mattermost Cloud releases:
+- [Release 2021-07-01](#release-2021-07-01)
+- [Release 2021-06-16](#release-2021-06-16)
+- [Release 2021-06-02](#release-2021-06-02)
+- [Release 2021-05-21](#release-2021-05-21)
+- [Release 2021-05-05](#release-2021-05-05)
+- [Release 2021-04-22](#release-2021-04-22)
+- [Release 2021-04-07](#release-2021-04-07)
+
+## Release 2021-07-01
+
+### Highlights
+
+#### Collapsed Reply Threads (Early Beta Access)
+
+ - We're excited to give you early access to Collapsed Reply Threads (Beta). It can be enabled in the **System Console > Experimental > Collapsed Reply Threads (Beta)**. Learn more about the features and known issues in [our documentation](https://docs.mattermost.com/help/messaging/organizing-conversations.html).
+
+#### Emoji Enhancements with Skin Tone Selection
+ - Added support for emoji standard v13.0. Users now have the ability to choose various skin tones using the Mattermost emoji picker. Mobile support is planned for v1.45 Mobile App release (July 16th), so some emojis selected on desktop won't be visible on mobile apps.
+
+### Improvements
+
+#### User Interface (UI)
+ - Added English-Australian language variation.
+ - Added the ability to upload ``.jpeg`` files on Linux. Uploading ``.jpg`` files was already supported.
+ - Before anything is typed, a list of channels you are a member of is now shown and sorted by recency in the channel switcher. The number of channels shown in the channel switcher in the default state are capped to maximum of 20. If there is no recent channel activity (in the case of new users), an alphabetical list of channels is shown displaying **My Channels** first and other **Public Channels** next, capped at a maximum of 20 by default.
+ - Polish, German, and Italian languages were downgraded to beta as they are [no longer actively maintained](https://handbook.mattermost.com/contributors/contributors/localization#translation-quality).
+ - Added the ability in the custom status tooltips, status dropdown and profile popover to select an expiry time for custom statuses. Also added new components ``ExpiryMenu`` and ``DateTimeInput`` to the custom status modal.
+
+#### Administration
+ - Optimized the bulk import process by no longer requiring the server to write the incoming archive to the filesystem when unzipping it.
+ - Added channel restore and channel privacy change endpoints to the local mode using the System bot.
+
+### Bug Fixes
+ - Fixed an issue where sidebar icons were not aligned with the navigator area icons.
+ - Fixed an issue where using CTRL+F in a **Direct Message** channel added the user ID rather than the user's name into the search field.
+ - Fixed an issue where user icons were displayed at full opacity in muted channels.
+ - Fixed an issue where a redundant ``user_update`` websocket event was generated for bot users.
+
+### Known Issues
+ - Sometimes an "Unable to get role" error appears when changing a channel member role in **System Console > User Management > Channels**.
+ - **Cloud > "Tips & Next Steps"** should not show an "Explore channels" section for guest users.
+ - System Roles shows **License** and **Environment** as possible permissions, but they are always hidden in Cloud.
+
+## Release 2021-06-16
+
+### Improvements
+
+#### User Interface (UI)
+ - In the at-mention autocomplete, the user’s nickname is no longer shown when (you) is present.
+ - Updated the help text on the **Add Users** channel modal.
+
+#### Administration
+ - The platform binary file has been removed from the distribution files. It should be replaced by the Mattermost binary file if it's being used in scripts.
+ - Improved memory performance for large image uploads, particularly PNGs with transparency.
+
+### Bug Fixes
+ - Fixed an issue where users were unable to set a custom status emoji via slash command by adding the logic for detecting unicode emoji and setting it as custom status emoji via slash commands.
+ - Fixed an issue where messages with fallback text were repeated.
+ - Fixed an issue where a persistent unread badge showed on the **Main Menu** when **Enable Marketplace** or **Enable Plugins** was disabled.
+
+### Known Issues
+ - Pinned posts are no longer highlighted.
+ - Sometimes an "Unable to get role" error appears when changing a channel member role in **System Console > User Management > Channels**.
+ - **Cloud > "Tips & Next Steps"** should not show an "Explore channels" section for guest users.
+ - System Roles shows **License** and **Environment** as possible permissions, but they are always hidden in Cloud.
+
+## Release 2021-06-02
+
+### Improvements
+
+#### User Interface (UI)
+ - Removed status icon from the profile image in the center channel and the right-hand side view.
+ - Added a performance improvement to the emoji picker overlay to improve typing performance.
+ - Added performance improvements when receiving new posts.
+
+#### Administration
+ - Team-restricted direct channel creation is now also applied to the backend. Previously, this was restricted to the frontend.
+ - Refactored the config storing logic to improve its robustness and performance.
+ - Added a visual grouping of related settings under AD/LDAP in the System Console.
+
+### Bug Fixes
+ - Fixed an issue where the job scheduler server could miss a "changed leader" cluster event.
+ - Fixed an issue where using ``Ctrl+Cmd+F`` on the MacOS Desktop App opened the search instead of full-screened the app.
+ - Fixed an issue where the message input box was shadowed when uploading a file in the center channel.
+ - Fixed an error caused by a post created with a non-string attachment field.
+ - Fixed the opacity of the read state in the channel sidebar, as well as enhanced the opacity of the channel icon when the channel was unread.
+ - Fixed an issue where users were unable to sign in with O365 authentication when the AuthData was formatted differently between Office365 OAuth and Office 365 OpenID.
+
+### Known Issues
+ - Pinned posts are no longer highlighted.
+ - Sometimes an "Unable to get role" error appears when changing a channel member role in **System Console > User Management > Channels**.
+ - **Cloud > "Tips & Next Steps"** should not show an "Explore channels" section for guest users.
+ - System Roles shows **License** and **Environment** as possible permissions, but they are always hidden in Cloud.
+
+## Release 2021-05-21
+
+### Improvements
+
+#### User Interface (UI)
+ - Added Hungarian (Beta) language.
+ - A search tip is now shown when scrolling back in a channel.
+ - Improved the error text in the **Edit Channel Header** modal.
+ - Added the ability to clear a custom status when only an emoji and no text is set.
+ - Redesigned message notification emails.
+
+#### Administration
+ - The default value of the [Support Email](https://docs.mattermost.com/administration/config-settings.html#support-email) (previously ``_feedback@mattermost.com_``) has been removed. Admin Advisor will now prompt System Admins about missing configuration for the [Support Email](https://docs.mattermost.com/administration/config-settings.html#support-email). This value is required, and it ensures Mattermost account requests are sent to the correct team for resolution.
+ - The **Marketplace** button in the **Main Menu** is now displayed if the user has the ``sysconsole_write_plugins`` permission.
+ - Added new feature discoveries in the System Console, including Data Retention Policy and OpenID Connect.
+ - Added basic intra-cluster communication support for plugins.
+ - Improved error messages for ``/header`` and ``/purpose`` commands.
+
+### Bug Fixes
+ - Fixed a race condition where enabling plugins would result in spurious errors in the logs.
+ - Fixed a bug where team member permissions were not updated after associating a team with a permission scheme.
+ - Fixed the responses of the role by ID and all roles of API endpoints when the role was associated to channel schemes.
+ - Removed sticky sidebar headings in favor of fixing nesting errors.
+ - Fixed an issue where the **Close** button in the **Create New Category** modal was only visible on mouse hover.
+ - Fixed a bug where session expiration was extended with activity regardless of what the config setting ``ServiceSettings.ExtendSessionLengthWithActivity`` was set to.
+ - Fixed an issue where the ``idmigrate`` command did not update values if they were not already present as LDAP attributes in the ``config.json``.
+
+### Known Issues
+ - Pinned posts are no longer highlighted.
+ - Sometimes an "Unable to get role" error appears when changing a channel member role in **System Console > User Management > Channels**.
+ - **Cloud > "Tips & Next Steps"** should not show an "Explore channels" section for guest users.
+ - System Roles shows **License** and **Environment** as possible permissions, but they are always hidden in Cloud.
+
+## Release 2021-05-05
+
+### Improvements
+
+#### User Interface (UI)
+ - If message autoresponder is set, only one message is now sent to a given user irrespective of how many Direct Message messages the user receives.
+ - Added status icons on **Add members** to channel and **Add members** to team lists.
+ - Added a keyboard shortcut to focus on the Search bar and search in the current channel.
+
+#### Administration
+ - Gossip clustering mode is now in General Availability and is no longer available as an option. All cluster traffic will always use the gossip protocol. The config setting ``UseExperimentalGossip`` has no effect and has only been kept for compatibility purposes. The setting to use gossip has been removed from the System Console. **Note:** For High Availability upgrades, all nodes in the cluster must use a single protocol. If an existing system is not currently using gossip, one node in a cluster can't be upgraded while other nodes in the cluster use an older version. Customers must either use gossip for their High Availability upgrade, or customers must shut down all nodes, perform the upgrade, and then bring all nodes back up.
+ - ``TCP_NO_DELAY`` is disabled for Websocket connections to allow for higher throughput.
+ - Compliance Monitoring CSV files are no longer limited to 30,000 rows.
+
+### Bug Fixes
+ - Fixed an issue where bulk export generated invalid Direct Message channels between deactivated users.
+ - Fixed an issue where the custom status cleared slash commands on mobile.
+ - Fixed an issue with an incorrect error message when trying to change handle via API to another one that already existed.
+ - Fixed an issue where LDAP Group Sync didn't work when using SAML (ADFS) for authentication and AD/LDAP Group Sync unless ``EnableSyncWithLdapIncludeAuth`` was set to ``true``, which caused the ``AuthData`` to be stored in AD/LDAP format.
+ - Fixed an issue where a user with 'No Access' permission could still access **Groups**, **Channels** and **Teams** configuration pages through a URL.
+ - Fixed an issue where **Remove from channel** and **Remove Team Member** menu items were visible in a group-synced channel or team.
+ - Fixed various bugs related to hardcoded theme colours.
+ - Fixed UI issues related to hardcoded variables and misalignment of the channel header with the **Has guests** text.
+ - Fixed an issue with SAML Sign-on where System Admins were unable to modify **Service Provider Login URL** unless ``VerifySignature`` was enabled.
+
+### Known Issues
+ - Pinned posts are no longer highlighted.
+ - Sometimes an "Unable to get role" error appears when changing a channel member role in **System Console > User Management > Channels**.
+ - **Cloud > "Tips & Next Steps"** should not show an "Explore channels" section for guest users.
+ - System Roles shows **License** and **Environment** as possible permissions, but they are always hidden in Cloud.
+
 ## Release 2021-04-22
 
 ### Highlights
 
 #### Apps Framework (Developer Preview)
  - The Mattermost Apps Framework introduces a new way to integrate with external tools to allow developers to create interactive Apps in Mattermost using any development language they're comfortable with. These Apps work seamlessly across mobile and desktop clients. This is a developer preview that is not yet intended for production instances of Mattermost. The Apps Framework will be available for self-managed customers in Mattermost v5.35 once the Apps Framework Plugin is loaded on an instance. Until then, developers can use the `cloud` branch to get a local test environment running. The launch for the Developer Preview of the Apps Framework is scheduled for April 29th, 2021. Learn more: https://developers.mattermost.com/integrate/apps/.
+
+#### Search Results Are Returned on File Search
+ - Searching in Mattermost now finds both relevant messages and files in your team's conversation history. Search will return results for attachments that match the file name or contain matching text content within supported document types. Learn more. To be available for mobile apps in a later release.
 
 #### Granular Access to System Console Pages
  - Migrated the following System Console sections to their respective sub-section permissions: Experimental, About, Reporting, Environment, Site Configuration, Authentication, Integrations, and Compliance.

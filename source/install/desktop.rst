@@ -1,6 +1,6 @@
 
 Desktop Application Install Guides
-===================================
+==================================
 
 Mattermost desktop applications are available for Windows, Mac, and Linux operating systems. They support all the features of the web experience, plus:
 
@@ -23,24 +23,24 @@ You can `download the apps directly from our downloads page <https://mattermost.
 .. contents::
     :backlinks: top
 
-Windows 10+, Windows 8.1+, Windows 7+
---------------------------------------
+Windows 10+, Windows 8.1+
+-------------------------
 
 1. Download the latest version of the Mattermost desktop app:
 
-   - `32/64-bit version of Windows <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-setup-4.6.2-win.exe>`__
+   - `32/64-bit version of Windows <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-setup-4.7.0-win.exe>`__
 
-2. From the **\Downloads** folder right-click on the file ``mattermost-desktop-setup-4.6.2-win.exe`` and select **Open**.
+2. From the **\Downloads** folder right-click on the file ``mattermost-desktop-setup-4.7.0-win.exe`` and select **Open**.
 
 This will start an installer for the app. Once finished, the Mattermost desktop app will open automatically.
 
 MSI Installer and Group Policies (Beta)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Download the latest version of the Mattermost desktop app MSI installer (Beta):
 
-   - MSI for `64-bit version of Windows <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-x64.msi>`__
-   - MSI for `32-bit version of Windows <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-x86.msi>`__
+   - MSI for `64-bit version of Windows <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-x64.msi>`__
+   - MSI for `32-bit version of Windows <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-x86.msi>`__
 
 `See here <https://docs.mattermost.com/install/desktop-msi-gpo.html>`__ for instructions on installing the Mattermost desktop app via an MSI installer and configuring supported Group Policies.
 
@@ -55,9 +55,11 @@ The following Group Policies are available:
 +----------------------------+-----------------------------------------------------------------------------+----------------------+
 
 macOS 10.9+
--------------
+-----------
 
-1. Download the `latest version of the Mattermost desktop app <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-mac.dmg>`__.
+1. Download the latest version of the Mattermost desktop app:
+  - `Intel systems <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-mac.dmg>`__
+  - `M1 systems <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-mac-m1.dmg>`__ (Beta)
 
 2. Double-click the download to open the disk image.
 
@@ -66,15 +68,15 @@ macOS 10.9+
 `Homebrew <https://brew.sh>`__ users can install with ``brew install --cask mattermost``.
 
 Linux
---------
+-----
 
 Generic Linux package
 ~~~~~~~~~~~~~~~~~~~~~
 
 1. Download the latest version of the Mattermost desktop app:
 
- - 64-bit systems: `mattermost-desktop-4.6.2-linux-x64.tar.gz <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-linux-x64.tar.gz>`__
- - 32-bit systems: `mattermost-desktop-4.6.2-linux-ia32.tar.gz <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-linux-ia32.tar.gz>`__
+ - 64-bit systems: `mattermost-desktop-4.7.0-linux-x64.tar.gz <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-x64.tar.gz>`__
+ - 32-bit systems: `mattermost-desktop-4.7.0-linux-ia32.tar.gz <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-ia32.tar.gz>`__
 
 2. Extract the archive to a convenient location. You can then execute ``mattermost-desktop``, which is located inside the extracted directory.
 
@@ -88,16 +90,37 @@ Unofficial, community-driven ``.deb`` packages are available.
 1. Download the latest version of the Mattermost Desktop App:
 
  - 64-bit systems
-   `mattermost-desktop-4.6.2-linux-amd64.deb <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-linux-amd64.deb>`__
+   `mattermost-desktop-4.7.0-linux-amd64.deb <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-amd64.deb>`__
  - 32-bit systems
-   `mattermost-desktop-4.6.2-linux-i386.deb <https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-linux-i386.deb>`__
+   `mattermost-desktop-4.7.0-linux-i386.deb <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-i386.deb>`__
 
 2. At the command line, execute one of the following commands depending on the package that you downloaded:
 
  - 64-bit systems
-    ``sudo dpkg -i mattermost-desktop-4.6.2-linux-amd64.deb``
+    ``sudo dpkg -i mattermost-desktop-4.7.0-linux-amd64.deb``
  - 32-bit systems
-    ``sudo dpkg -i mattermost-desktop-4.6.2-linux-i386.deb``
+    ``sudo dpkg -i mattermost-desktop-4.7.0-linux-i386.deb``
+
+3. To run Mattermost, open **Dash** (located at the top left corner), enter **mattermost**, then click the Mattermost icon.
+
+Linux rpm files (Beta)
+~~~~~~~~~~~~~~~~~~~~~~
+
+Unofficial, community-driven ``.rpm`` packages are available.
+
+1. Download the latest version of the Mattermost Desktop App:
+
+ - 32-bit systems
+   `mattermost-desktop-4.7.0-linux-i686.rpm <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-i686.rpm>`__
+ - 64-bit systems
+   `mattermost-desktop-4.7.0-linux-x86_64.rpm <https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-4.7.0-linux-x86_64.rpm>`__
+
+2. At the command line, execute one of the following commands depending on the package that you downloaded:
+
+ - 32-bit systems
+    ``sudo rpm -i mattermost-desktop-4.7.0-linux-i686.rpm``
+ - 64-bit systems
+    ``sudo rpm -i mattermost-desktop-4.7.0-linux-x86_64.rpm``
 
 3. To run Mattermost, open **Dash** (located at the top left corner), enter **mattermost**, then click the Mattermost icon.
 
@@ -118,20 +141,20 @@ A snap is available for systems that have Snapcraft installed. Snapcraft is inst
 2. To run Mattermost, open **Dash** (located at the top left corner), enter **mattermost**, then click the Mattermost icon.
 
 Troubleshooting
------------------
+---------------
 
 "Installation has failed" dialog
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The app data might be corrupted. Remove all the files in ``%LOCALAPPDATA%\mattermost``, then try reinstalling the app.
     
 "The application "Mattermost" can't be opened" dialog
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On macOS Catalina, this dialog can be triggered if the Mac Archive Utility is the default method for decompressing files. In this case using a third-party tool such as `Keka <https://www.keka.io>`_ or `Unarchiver <https://macpaw.com/the-unarchiver>`_ may resolve the problem.
 
 Desktop App window is black and doesn't load the page
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. First, make sure you have installed the latest desktop app version `from our website <https://mattermost.com/download/#mattermostApps>`__. Check your app version from **Help > Version**.
 2. Try to clear cache and reload the app from **View > Clear Cache and Reload** or use CTRL/CMD+SHIFT+R.
@@ -168,7 +191,7 @@ Desktop App constantly asks to log in to Mattermost server
 
 This issue can occur after a crash or unexpected shutdown of the desktop app that causes the app data to be corrupted. To resolve the issue:
 
-- Windows: Open Windows File Explorer, navigate to the``%APPDATA%\\Mattermost`` folder, then delete the ``IndexedDB`` folder and the ``Cookies`` and ``Cookies-journal`` files.
+- Windows: Open Windows File Explorer, navigate to the ``%APPDATA%\\Mattermost`` folder, then delete the ``IndexedDB`` folder and the ``Cookies`` and ``Cookies-journal`` files.
 - Mac: Open Finder, navigate to the ``~/Library/Application Support/Mattermost`` folder, then delete the ``IndexedDB`` folder and the ``Cookies`` and ``Cookies-journal`` files.
 - Linux: Open the file manager, navigate to the ``~/.config/Mattermost`` folder, then delete the ``IndexedDB`` folder and the ``Cookies`` and ``Cookies-journal`` files.
 
@@ -188,7 +211,7 @@ Append ``Mattermost.exe;`` to the Registry Key ``HKLM\SYSTEM\CurrentControlSet\S
 For further assistance, review the `Troubleshooting forum <https://forum.mattermost.org/c/trouble-shoot>`__ for previously reported errors, or `join the Mattermost user community for troubleshooting help <https://mattermost.com/pl/default-ask-mattermost-community/>`_.
 
 Reporting Issues
------------------
+----------------
 
 When reporting bugs found in the Mattermost desktop app, it is helpful to include the contents of the Developer Tools Console along with `the information on this page <https://docs.mattermost.com/process/support.html#general-questions-for-any-issues>`__. To access the Developer Tools Console, follow these instructions:
 

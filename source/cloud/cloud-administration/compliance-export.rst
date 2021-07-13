@@ -49,7 +49,7 @@ Actiance XML
 4. Set the export file format to **Actiance XML**.
 5. Choose **Save**.
 
-The daily compliance export job creates a zip file with a unique job identifier of all messages posted in the last 24 hours. Once you’ve selected Actiance XML as your file format, you can set up an integration with the Actiance Vantage archive system. For more information, see `their homepage <https://www.actiance.com/products/vantage/>`__. 
+The daily compliance export job creates a zip file with a unique job identifier of all messages posted in the last 24 hours. Once you’ve selected Actiance XML as your file format, you can set up an integration with the Actiance Vantage archive system. For more information, see `their homepage <https://www.actianceworks.com/Vantage.asp>`__. 
 
 For a sample Actiance output, `download an Actiance XML export file here <https://github.com/mattermost/docs/blob/master/source/samples/actiance_export.xml>`__.
 
@@ -88,6 +88,11 @@ What happens if I export data manually?
 If the compliance export job is run automatically, manually via the System Console, it exports all posts that were made since the last post that the previous execution of the job exported. If this is the first time that the job has ever run, all posts that were made since the feature was enabled will be exported.
 
 When run manually via the System Console, CSV and Actiance XML files are written to the `exports` subdirectory of the configured `Local Storage Directory <https://docs.mattermost.com/administration/config-settings.html?#local-storage-directory>`__. Files will be written to a folder with names based on an epoch time range. Global Relay EML export format will be mailed to the configured email address when run manually.
+
+Is there a maximum row limit for CSV files?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+No. There's no limit to the number of rows within Compliance Monitoring CSV files.
 
 Why are compliance exports beta?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
