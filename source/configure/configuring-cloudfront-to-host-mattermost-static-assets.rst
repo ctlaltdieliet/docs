@@ -55,6 +55,6 @@ Configuring CloudFront to host Mattermost's static assets allows for improved ca
 Upgrade Notes
 ~~~~~~~~~~~~~~~
 
-When you upgrade your Mattermost app servers, you will need to re-upload the new client to your S3 bucket (see steps 3 and 4 above).
+When you upgrade your Mattermost app servers, you will need to re-upload the new client to your S3 bucket (see steps three and four above).
 
 You should also run a CloudFront invalidation for ``/static/root.html``. You can do this in the console under the invalidations tab. 

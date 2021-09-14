@@ -26,7 +26,7 @@ Choose the name of your Mattermost site to be shown in the UI. The site name app
 Custom Branding Image
 ~~~~~~~~~~~~~~~~~~~~~
 
-Upload a company logo or custom image representative of your site that is displayed on the left side of the site login page. Supported image formats are JPG, PNG, TIFF, and BMP. The recommended image size is 200-500px in width and height, and less than 2 MB since it's loaded for every user who logs in on desktop.
+Upload a company logo or custom image representative of your site that is displayed on the left side of the site login page. Supported image formats are JPG, PNG, TIFF, and BMP. The recommended image size is 200-500px in width and height, and less than two MB since it's loaded for every user who logs in on desktop.
 
 Custom Brand Text
 ~~~~~~~~~~~~~~~~~

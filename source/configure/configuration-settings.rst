@@ -1724,7 +1724,7 @@ Enable Custom Branding
 Custom Brand Image
 ^^^^^^^^^^^^^^^^^^^
 
-Custom JPG image is displayed on left side of server login page. Recommended maximum image size is less than 2 MB because image will be loaded for every user who logs in.
+Custom JPG image is displayed on left side of server login page. Recommended maximum image size is less than two MB because image will be loaded for every user who logs in.
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | This features has no ``config.json`` setting and must be set in the System Console user interface.                                                                    |
@@ -4408,7 +4408,7 @@ This setting applies to the legacy sidebar only. You must enable the `Enable Leg
 
 We strongly recommend that you leave the **Enable Legacy Sidebar** configuration setting disabled so users can access new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See `the documentation <https://docs.mattermost.com/help/getting-started/organizing-your-sidebar.html>`_ for more information about these features.
 
-**True**: By default, direct message conversations with no activity for 7 days will be hidden from the sidebar. Users can disable this in **Account Settings > Sidebar**.
+**True**: By default, direct message conversations with no activity for seven days will be hidden from the sidebar. Users can disable this in **Account Settings > Sidebar**.
 
 **False**: Conversations remain in the sidebar until they are manually closed.
 
@@ -6045,7 +6045,7 @@ Enable Plugin Health Check
 
 **True**: Enables plugin health check to ensure all plugins are periodically monitored, and restarted or deactivated based on their health status.
 
-The health check runs every 30 seconds. If the plugin is detected to fail 3 times within an hour, the Mattermost server attempts to restart it. If the restart fails 3 successive times, it's automatically disabled.
+The health check runs every 30 seconds. If the plugin is detected to fail three times within an hour, the Mattermost server attempts to restart it. If the restart fails three successive times, it's automatically disabled.
 
 **False**: Disables plugin health check on your Mattermost server.
 
