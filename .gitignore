@@ -4,7 +4,8 @@ logs
 node_modules
 dist
 npm-debug.log
-
+.venv
+extensions/**/__pycache__/
 web/static/js/bundle*.js
 web/static/js/libs*.js
 model/version.go
@@ -64,3 +65,22 @@ source/developer/localization.md
 
 # IDEs
 .idea/
+
+# Generated PKI files
+*.key
+*.crt
+.aider*
+
+**/.claude/settings.local.json
+
+# Sphinx build artifacts
+*.doctree
+_build/
+build/
+
+# Cursor instructions
+*.cursor
+!.cursor/
+!.cursor/rules/
+!.cursor/rules/*.mdc
+eng.md

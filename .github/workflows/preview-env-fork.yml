@@ -1,108 +1,74 @@
 name: preview-env-fork-setup-update
 
 on:
-  workflow_run:
-    workflows: ["check-label-preview-env"]
-    types: [completed]
+  workflow_dispatch:
+    inputs:
+      PR_NUMBER:
+        type: string
+        required: true
+      TRIGGERING_ACTOR:
+        type: string
+        required: true
+      COMMIT_SHA:
+        type: string
+        required: true
 
 jobs:
-  deploy:
+  update-initial-status:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Download PR number artifact
-        uses: dawidd6/action-download-artifact@v2
+    - name: package/update-initial-status
+      uses: mattermost/actions/delivery/update-commit-status@fec7b836001c9380d4bfaf28d443945c103a098c
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        repository_full_name: ${{ github.repository }}
+        commit_sha: ${{ inputs.COMMIT_SHA }}
+        context: "preview-env-fork-setup-update / deploy"
+        description: "Pipeline for docs generation for ${{ inputs.COMMIT_SHA }} is running"
+        status: pending
+
+  deploy:
+    uses: ./.github/workflows/preview-env-template.yml
+    secrets: inherit
+    needs: 
+      - update-initial-status
+    with:
+      PR_NUMBER: ${{ inputs.PR_NUMBER }}
+      TRIGGERING_ACTOR: ${{ inputs.TRIGGERING_ACTOR }}
+      COMMIT_SHA: ${{ inputs.COMMIT_SHA }}
+
+  # We need to duplicate here in order to set the proper commit status
+  # https://mattermost.atlassian.net/browse/CLD-5815
+  update-failure-final-status:
+    runs-on: ubuntu-latest
+    if: failure() || cancelled()
+    needs:
+      - deploy
+    steps:
+      - uses: mattermost/actions/delivery/update-commit-status@fec7b836001c9380d4bfaf28d443945c103a098c
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: pr.txt
-      - name: Save PR number
-        id: pr
-        run: |
-          echo "::set-output name=id::$(<pr.txt)"
-      - name: Check label
-        uses: actions/github-script@v4
-        id: label-checker
+          repository_full_name: ${{ github.repository }}
+          commit_sha: ${{ inputs.COMMIT_SHA }}
+          context: "preview-env-fork-setup-update / deploy"
+          description: "Pipeline for docs generation for ${{ inputs.COMMIT_SHA }} failed~"
+          status: failure
+
+  # https://mattermost.atlassian.net/browse/CLD-5815
+  update-success-final-status:
+    runs-on: ubuntu-latest
+    if: success()
+    needs:
+      - deploy
+    steps:
+      - uses: mattermost/actions/delivery/update-commit-status@fec7b836001c9380d4bfaf28d443945c103a098c
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            let fs = require('fs');
-            let issue_number = Number(fs.readFileSync('./pr.txt'));
-            const query = `query($owner:String!, $name:String!, $pr:Int!) {
-              repository(owner:$owner, name:$name){
-                pullRequest(number:$pr) {
-                  labels(first:50) {
-                    nodes{
-                      name
-                    }
-                  }
-                }
-              }
-            }`;
-            const variables = {
-              owner: 'mattermost',
-              name: 'docs',
-              pr: issue_number
-            };
-            const result = await github.graphql(query, variables);
-            console.log(result.repository.pullRequest.labels.nodes);
-            const labels = result.repository.pullRequest.labels.nodes;
-            for (var index = 0; index < labels.length; ++index) {
-              var label = labels[index];
-              if(label.name == 'preview-environment') {
-                return true;
-              }
-            }
-            return false;
-
-      - uses: actions/checkout@v2
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          submodules: true
-          fetch-depth: 0
-
-      - name: Setup Python
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
-      - name: Install pipenv
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        run: pip install pipenv
-
-      - name: Install dependencies
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        run: pipenv install --dev
-
-      - name: Build
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        run: make SPHINXOPTS="-j auto -D mm_url_path_prefix=/${{ steps.pr.outputs.id }}" html
-
-      - uses: shallwefootball/s3-upload-action@master
-        name: Upload Preview Env
-        if: ${{ steps.label-checker.outputs.result == 'true' }}
-        with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: ./build/html
-          destination_dir: ${{ steps.pr.outputs.id }}
-
-      - name: Add comment to PR
-        uses: peter-evans/create-or-update-comment@v1
-        if: ${{ success() && steps.label-checker.outputs.result == 'true' }}
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ steps.pr.outputs.id }}
-          body: |
-            Newest code from ${{ github.actor }} has been published to [preview environment](http://mattermost-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ steps.pr.outputs.id }}) for Git SHA ${{ github.event.workflow_run.head_sha }}
-
-      - name: The job has failed
-        if: ${{ failure() && steps.label-checker.outputs.result == 'true' }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ steps.pr.outputs.id }}
-          body: Preview environment failed.
+          repository_full_name: ${{ github.repository }}
+          commit_sha: ${{ inputs.COMMIT_SHA }}
+          context: "preview-env-fork-setup-update / deploy"
+          description: "Pipeline for docs generation for ${{ inputs.COMMIT_SHA }} succeeded"
+          status: success
